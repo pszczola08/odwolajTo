@@ -1,0 +1,22 @@
+header {
+    background-color: #2A2A2A;
+}
+nav {
+    background-color: #3F3F3F;
+}
+nav a:hover {
+    background-color: #6A6A6A;
+}
+.material-symbols-rounded, input, textarea {
+    color: #545454;
+    user-select: none;
+}
+.material-symbols-rounded:hover {
+    color: #7F7F7F;
+}
+input:focus {
+    outline: 10px solid #7F7F7F;
+}
+body {
+    background-color: blue;
+}

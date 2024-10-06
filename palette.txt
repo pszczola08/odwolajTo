@@ -1,8 +1,8 @@
-Main: #2a2a2a
-Nav 1: #3f3f3f
-Nav 2: #6a6a6a
+Main: #2A2A2A
+Nav 1: #3F3F3F
+Nav 2: #6A6A6A
 Button 1: #545454
-Button 2: #7f7f7f
+Button 2: #7F7F7F
 Default Backgroud: #F7F7F2
 Default Text: #12130F
 Dark Mode Background: #12130F
