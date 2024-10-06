@@ -14,9 +14,9 @@ nav a:hover {
 .material-symbols-rounded:hover {
     color: #7F7F7F;
 }
-input:focus {
-    outline: 10px solid #7F7F7F;
+input {
+    margin: 5px;
 }
-body {
-    background-color: blue;
+input:focus {
+    outline: 3px solid #7F7F7F;
 }
