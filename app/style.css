@@ -7,16 +7,19 @@ nav {
 nav a:hover {
     background-color: #6A6A6A;
 }
-.material-symbols-rounded, input, textarea {
+.material-symbols-rounded {
     color: #545454;
     user-select: none;
 }
 .material-symbols-rounded:hover {
     color: #7F7F7F;
 }
-input {
-    margin: 5px;
-}
 input:focus {
-    outline: 3px solid #7F7F7F;
+    background-color:  #7F7F7F;
+}
+input {
+    padding: 6px 12px;
+    transition: .1s;
+    border-radius: 10px;
+    background-color: #545454;
 }
