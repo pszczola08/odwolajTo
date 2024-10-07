@@ -1,25 +1,25 @@
 header {
-    background-color: #2A2A2A;
+    background-color: #10152E;
 }
 nav {
-    background-color: #3F3F3F;
+    background-color: #161C3D;
 }
 nav a:hover {
-    background-color: #6A6A6A;
+    background-color: #212A5C;
 }
 .material-symbols-rounded {
-    color: #545454;
+    color: #1C234D;
     user-select: none;
 }
 .material-symbols-rounded:hover {
-    color: #7F7F7F;
-}
-input:focus {
-    background-color:  #7F7F7F;
+    color: #27316B;
 }
 input {
     padding: 6px 12px;
     transition: .1s;
     border-radius: 10px;
-    background-color: #545454;
+    background-color: #1C234D;
+}
+input:focus {
+    background-color:  #27316B;
 }
