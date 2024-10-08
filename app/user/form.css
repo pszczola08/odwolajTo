@@ -1,0 +1,32 @@
+input {
+    margin: 10px auto;
+    padding: 10px;
+    display: inline-block;
+}
+input[type="text"] {
+    max-width: calc(20vw - 23.2px);
+    width: calc(20vw - 23.2px);
+}
+span#showBtn:hover {
+    cursor: pointer;
+}
+form {
+    display: block;
+    text-align: center;
+}
+div.passLabel {
+    display: flex;
+    max-width: 20vw;
+    max-width: 20vw;
+    margin: auto;
+}
+div > input {
+    flex: 17;
+    width: 100%;
+}
+span#showBtn {
+    flex: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

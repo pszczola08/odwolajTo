@@ -1,8 +1,18 @@
+body {
+    margin: 10px;
+}
 header {
     background-color: #10152E;
+    text-align: center;
+    padding: 30px;
+    font-size: 32px;
+    border-radius: 15px;
+    margin-bottom: 10px;
 }
 nav {
     background-color: #161C3D;
+    border-radius: 15px;
+    padding: 20px;
 }
 nav a:hover {
     background-color: #212A5C;
@@ -16,10 +26,39 @@ nav a:hover {
 }
 input {
     padding: 6px 12px;
-    transition: .1s;
     border-radius: 10px;
     background-color: #1C234D;
+    transition: background-color .5s ease;
 }
 input:focus {
     background-color:  #27316B;
+}
+@media screen and (min-width: 1000px) {
+    main {
+        display: flex;
+        height: calc(100vh - 130px)
+    }
+    nav {
+        flex: 2;
+        margin-right: 10px;
+    } 
+    article {
+        flex: 7;
+    }
+    nav > a {
+        display: block;
+        margin-bottom: 7px;
+    }
+}
+@media screen and (max-width: 999px) {
+    nav {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    nav > a {
+        margin: 0 7px;
+    }
+    article {
+        height: calc(100vh - 170px);
+    }
 }
