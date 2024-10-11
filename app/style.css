@@ -3,6 +3,7 @@ body {
 }
 header {
     background-color: #10152E;
+    color: #B3B3B5;
     text-align: center;
     padding: 30px;
     font-size: 32px;
@@ -11,6 +12,7 @@ header {
 }
 nav {
     background-color: #161C3D;
+    color: #CACACB;
     border-radius: 15px;
     padding: 20px;
 }
@@ -28,6 +30,7 @@ input {
     padding: 6px 12px;
     border-radius: 10px;
     background-color: #1C234D;
+    color: #E0E0E2;
     transition: background-color .5s ease;
 }
 input:focus {
