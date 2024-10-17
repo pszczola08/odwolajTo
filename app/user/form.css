@@ -51,7 +51,7 @@ label {
     width: 200px;
     height: 200px;
     display: inline-block;
-    margin: 20vh 10px 0 10px;
+    margin: 15vh 10px 5vh 10px;
     border-radius: 20px;
     transition: .6s;
     padding: 10px;

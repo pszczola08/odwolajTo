@@ -24,29 +24,39 @@
         Kto będzie korzystał z tego konta?<br>
         <div class="rdCnt">
             <label style="border: 2px solid #ff7f00">
-                <input type="radio" name="type">
+                <input type="radio" name="type" value="student" required>
                 <div class="rdBtn">
                     Uczeń<br>
                     <img src="student.png" alt="student">
                 </div>
             </label>
             <label style="border: 2px solid #3a4ec6">
-                <input type="radio" name="type">
+                <input type="radio" name="type" value="teacher">
                 <div class="rdBtn">
                     Nauczyciel<br>
                     <img src="teacher.png" alt="teacher">
                 </div>
             </label>
             <label style="border: 2px solid #7cd444">
-                <input type="radio" name="type">
+                <input type="radio" name="type" value="principal">
                 <div class="rdBtn">
                     Dyrekcja<br>
+                    <img src="principal.png" alt="principal">
                 </div>
             </label>
         </div>
+        <input type="submit" value="Kolejna strona">
     </form>
     <?php
         session_start();
+        if(!isset($_SESSION["user"]) || !isset($_SESSION["pass"])) {
+            echo("<script>window.open('register0.php', '_self')</script>");
+        }
+        @$type = $_POST["type"];
+        if(isset($type)) {
+            $_SESSION["type"] = $type;
+            echo("<script>window.open('register2.php', '_self')</script>");
+        }
     ?>
 </body>
 </html>
