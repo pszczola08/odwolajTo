@@ -1,9 +1,10 @@
 body {
     margin: 10px;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 header {
-    background-color: #10152E;
-    color: #B3B3B5;
+    background-color: #ff7f00;
     text-align: center;
     padding: 30px;
     font-size: 32px;
@@ -11,30 +12,28 @@ header {
     margin-bottom: 10px;
 }
 nav {
-    background-color: #161C3D;
-    color: #CACACB;
+    background-color: #7cd444;
     border-radius: 15px;
     padding: 20px;
 }
 nav a:hover {
-    background-color: #212A5C;
+    background-color: #8aeb4b;
 }
 .material-symbols-rounded {
-    color: #1C234D;
+    color: #3a4ec6;
     user-select: none;
 }
 .material-symbols-rounded:hover {
-    color: #27316B;
+    color: #4057dc;
 }
 input {
     padding: 6px 12px;
     border-radius: 10px;
-    background-color: #1C234D;
-    color: #E0E0E2;
+    background-color: #3a4ec6;
     transition: background-color .5s ease;
 }
 input:focus {
-    background-color:  #27316B;
+    background-color:  #4057dc;
 }
 @media screen and (min-width: 1000px) {
     main {
@@ -56,7 +55,9 @@ input:focus {
 @media screen and (max-width: 999px) {
     nav {
         text-align: center;
-        margin-bottom: 10px;
+        position: fixed;
+        bottom: 10px;
+        width: calc(100vw - 60px);
     }
     nav > a {
         margin: 0 7px;
@@ -64,4 +65,8 @@ input:focus {
     article {
         height: calc(100vh - 170px);
     }
+}
+::selection {
+    background-color: #12130F;
+    color: #F7F7F2;
 }

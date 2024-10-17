@@ -33,3 +33,40 @@ span#showBtn {
 p {
     text-align: center;
 }
+aside {
+    display: flex;
+    border: 2px solid black;
+    width: 17vw;
+    height: 24px;
+    margin: auto;
+    border-radius: 5px;
+}
+aside > #progressMade {
+    background-color: #7cd444;
+}
+::placeholder {
+    color: #12130F;
+}
+label {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    margin: 20vh 10px 0 10px;
+    border-radius: 20px;
+    transition: .6s;
+    padding: 10px;
+}
+input[type="radio"] {
+    display: none;
+}
+label:has(input[type="radio"]:checked) {
+    transform: scale(1.1);
+}
+img {
+    width: 150px;
+    height: 150px;
+}
+.rdCnt {
+    display: flex;
+    justify-content: center;
+}
