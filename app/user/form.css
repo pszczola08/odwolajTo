@@ -47,7 +47,7 @@ aside > #progressMade {
 ::placeholder {
     color: #12130F;
 }
-label {
+label.typeLb {
     width: 200px;
     height: 200px;
     display: inline-block;
@@ -59,7 +59,7 @@ label {
 input[type="radio"] {
     display: none;
 }
-label:has(input[type="radio"]:checked) {
+label.typeLb:has(input[type="radio"]:checked) {
     transform: scale(1.1);
 }
 img {
@@ -69,4 +69,19 @@ img {
 .rdCnt {
     display: flex;
     justify-content: center;
+}
+.terms {
+    height: 350px;
+    width: 400px;
+    margin: 10vh auto 0;
+    border: #12130F solid 1px;
+    overflow: auto;
+    padding: 10px;
+    text-align: left;
+}
+.agree {
+   text-align: center;
+}
+.info {
+    display: inline;
 }

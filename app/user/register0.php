@@ -46,20 +46,16 @@
         }
     </script>
     <?php
+        require '../lib/functions.php';
+        require '../lib/globarVariables.php';
         $ok = true;
         @$user = $_POST['user'];
         @$pass = $_POST['pass'];
         @$pass2 = $_POST['pass2'];
         if(!empty($user) && !empty($pass) && !empty($pass2)) {
             try {
-                $con = mysqli_connect(
-                    'localhost',
-                    'root',
-                    '',
-                    'odwolajTo'
-                );
-                if($con->connect_error) {
-                    throw new Exception(''. $con->connect_error);
+                if(DB->connect_error) {
+                    throw new Exception(''. DB->connect_error);
                 }
             } catch(Exception $e) {
                 $ok = false;
@@ -68,29 +64,23 @@
 
             if($ok == true) {
                 if($pass == $pass2) {
-                    $userCheck = mysqli_query($con, "SELECT * FROM users WHERE username = '$user'");
+                    $userCheck = mysqli_query(DB, "SELECT * FROM users WHERE username = '$user'");
                     if(mysqli_num_rows($userCheck) == 0) {
                         $hashPass = sha1($pass);
                         session_start();
                         $_SESSION["user"] = $user;
                         $_SESSION["pass"] = $hashPass;
-                        echo("<script>");
-                        echo("window.open('register1.php', '_self')");
-                        echo("</script>");
+                        executeJS("window.open('register1.php', '_self')");
                     } else {
-                        echo("<script>");
-                        echo("document.getElementById('userInp').value = '$user';");
-                        echo("document.getElementById('passInp0').value = '$pass';");
-                        echo("document.getElementById('passInp1').value = '$pass2';");
-                        echo("</script>");
+                        executeJS("document.getElementById('userInp').value = '$user';");
+                        executeJS("document.getElementById('passInp0').value = '$pass';");
+                        executeJS("document.getElementById('passInp1').value = '$pass2';");
                         die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Ta nazwa użytkownika jest już zajęta./div>");
                     }
                 } else {
-                    echo("<script>");
-                    echo("document.getElementById('userInp').value = '$user';");
-                    echo("document.getElementById('passInp0').value = '$pass';");
-                    echo("document.getElementById('passInp1').value = '$pass2';");
-                    echo("</script>");
+                    executeJS("document.getElementById('userInp').value = '$user';");
+                    executeJS("document.getElementById('passInp0').value = '$pass';");
+                    executeJS("document.getElementById('passInp1').value = '$pass2';");
                     die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Hasła nie są takie same!</div>");
                 }
             }

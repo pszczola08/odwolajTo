@@ -23,21 +23,21 @@
     <form action="register1.php" method="post">
         Kto będzie korzystał z tego konta?<br>
         <div class="rdCnt">
-            <label style="border: 2px solid #ff7f00">
+            <label style="border: 2px solid #ff7f00" class="typeLb">
                 <input type="radio" name="type" value="student" required>
                 <div class="rdBtn">
                     Uczeń<br>
                     <img src="student.png" alt="student">
                 </div>
             </label>
-            <label style="border: 2px solid #3a4ec6">
+            <label style="border: 2px solid #3a4ec6" class="typeLb">
                 <input type="radio" name="type" value="teacher">
                 <div class="rdBtn">
                     Nauczyciel<br>
                     <img src="teacher.png" alt="teacher">
                 </div>
             </label>
-            <label style="border: 2px solid #7cd444">
+            <label style="border: 2px solid #7cd444" class="typeLb">
                 <input type="radio" name="type" value="principal">
                 <div class="rdBtn">
                     Dyrekcja<br>
@@ -48,14 +48,24 @@
         <input type="submit" value="Kolejna strona">
     </form>
     <?php
+        require '../lib/functions.php';
+        require '../lib/globarVariables.php';
         session_start();
         if(!isset($_SESSION["user"]) || !isset($_SESSION["pass"])) {
-            echo("<script>window.open('register0.php', '_self')</script>");
+            executeJS("window.open('register0.php', '_self')");
         }
         @$type = $_POST["type"];
         if(isset($type)) {
+            try {
+                if(DB->connect_error) {
+                    throw new Exception(''. DB->connect_error);
+                }
+            } catch(Exception $e) {
+                $ok = false;
+                die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Wystąpił problem. Spróbuj ponownie później.</div>");
+            }
             $_SESSION["type"] = $type;
-            echo("<script>window.open('register2.php', '_self')</script>");
+            executeJS("window.open('register2.php', '_self')");
         }
     ?>
 </body>
