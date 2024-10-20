@@ -6,7 +6,7 @@
     <meta name="keywords" content="Odwołaj To, Odwołaj, Logowanie, Zaloguj Się, Zaloguj">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="form.css">
-    <link rel="icon" href="../icon.png">
+    <link rel="icon" href="../assets/icons/icon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>odwolajto.pl - Rejestracja</title>
 </head>
@@ -63,7 +63,6 @@
     </form>
     <?php
         require '../lib/functions.php';
-        require '../lib/globarVariables.php';
         session_start();
         if(!isset($_SESSION["user"]) || !isset($_SESSION["pass"])) {
             echo("<script>window.open('register0.php', '_self')</script>");
@@ -73,15 +72,18 @@
         }
         @$agree = $_POST['agree'];
         if(isset($agree)) {
+            require '../lib/globarVariables.php';
             try {
                 if(DB->connect_error) {
                     throw new Exception(''. DB->connect_error);
                 }
             } catch(Exception $e) {
-                $ok = false;
+                DB -> close();
                 die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Wystąpił problem. Spróbuj ponownie później.</div>");
             }
+            $_SESSION['agree'] = $agree;
             executeJS("window.open('register3.php', '_self')");
+            DB -> close();
         }
     ?>
 </body>

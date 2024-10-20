@@ -6,7 +6,7 @@
     <meta name="keywords" content="Odwołaj To, Odwołaj, Logowanie, Zaloguj Się, Zaloguj">
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="form.css">
-    <link rel="icon" href="../icon.png">
+    <link rel="icon" href="../assets/icons/icon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>odwolajto.pl - Rejestracja</title>
 </head>
@@ -21,7 +21,7 @@
     </aside>
     <br>
     <form action="register0.php" method="post">
-        <input type="text" name="user" placeholder="Nazwa Użytkownika" required id="userInp"><br>
+        <input type="text" name="user" placeholder="Nazwa Użytkownika" required id="userInp" minlength="8" maxlength="24"><br>
         <div class="passLabel">
             <input type="password" name="pass" placeholder="Hasło" id="passInp0" required>
             <span class="material-symbols-rounded" id="showBtn" onclick="vis(0)">visibility_off</span><br>
@@ -47,43 +47,44 @@
     </script>
     <?php
         require '../lib/functions.php';
-        require '../lib/globarVariables.php';
         $ok = true;
         @$user = $_POST['user'];
         @$pass = $_POST['pass'];
         @$pass2 = $_POST['pass2'];
         if(!empty($user) && !empty($pass) && !empty($pass2)) {
+            require '../lib/globarVariables.php';
             try {
                 if(DB->connect_error) {
                     throw new Exception(''. DB->connect_error);
                 }
             } catch(Exception $e) {
-                $ok = false;
+                DB -> close();
                 die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Wystąpił problem. Spróbuj ponownie później.</div>");
             }
 
-            if($ok == true) {
-                if($pass == $pass2) {
-                    $userCheck = mysqli_query(DB, "SELECT * FROM users WHERE username = '$user'");
-                    if(mysqli_num_rows($userCheck) == 0) {
-                        $hashPass = sha1($pass);
-                        session_start();
-                        $_SESSION["user"] = $user;
-                        $_SESSION["pass"] = $hashPass;
-                        executeJS("window.open('register1.php', '_self')");
-                    } else {
-                        executeJS("document.getElementById('userInp').value = '$user';");
-                        executeJS("document.getElementById('passInp0').value = '$pass';");
-                        executeJS("document.getElementById('passInp1').value = '$pass2';");
-                        die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Ta nazwa użytkownika jest już zajęta./div>");
-                    }
+            if($pass == $pass2) {
+                $userCheck = mysqli_query(DB, "SELECT * FROM users WHERE username = '$user'");
+                if(mysqli_num_rows($userCheck) == 0) {
+                    $hashPass = sha1($pass);
+                    session_start();
+                    $_SESSION["user"] = $user;
+                    $_SESSION["pass"] = $hashPass;
+                    executeJS("window.open('register1.php', '_self')");
                 } else {
                     executeJS("document.getElementById('userInp').value = '$user';");
                     executeJS("document.getElementById('passInp0').value = '$pass';");
                     executeJS("document.getElementById('passInp1').value = '$pass2';");
-                    die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Hasła nie są takie same!</div>");
+                    DB -> close();
+                    die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Ta nazwa użytkownika jest już zajęta./div>");
                 }
+            } else {
+                executeJS("document.getElementById('userInp').value = '$user';");
+                executeJS("document.getElementById('passInp0').value = '$pass';");
+                executeJS("document.getElementById('passInp1').value = '$pass2';");
+                DB -> close();
+                die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Hasła nie są takie same!</div>");
             }
+            DB -> close();
         }
     ?>
 </body>

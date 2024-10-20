@@ -36,5 +36,40 @@
             }
         }
     </script>
+    <?php
+        require '../lib/functions.php';
+        @$user = $_POST['user'];
+        @$pass = $_POST['pass'];
+        if(!empty ($user) && !empty($pass)) {
+            require '../lib/globarVariables.php';
+            try {
+                if(DB->connect_error) {
+                    throw new Exception(''. DB->connect_error);
+                }
+            } catch(Exception $e) {
+                DB -> close();
+                die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Wystąpił problem. Spróbuj ponownie później.</div>");
+            }
+            $select = DB -> query(
+                "SELECT `username`, `password`, `accountType` FROM user WHERE `username` = '$user'"
+            );
+            if($fetch = $select -> fetch_object()) {
+                if(sha1($pass) == $fetch -> password) {
+                    DB -> close();
+                    session_start();
+                    $_SESSION["username"] = $fetch -> username;
+                    executeJS("window.open('../main/panel.php', '_self')");
+                } else {
+                    DB -> close();
+                    die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Podane hasło jest niepoprawne.</div>");
+                }
+            }
+            else {
+                DB -> close();
+                die("<div style='text-align: center; font-size: 20px; font-weight: bolder; color: red'>Podany użytkownik nie istnieje.</div>");
+            }
+
+        }
+    ?>
 </body>
 </html>
